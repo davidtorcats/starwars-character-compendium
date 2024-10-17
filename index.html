@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Wars</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bs-brain@2.0.4/tutorials/timelines/timeline-1/assets/css/timeline-1.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section class="bsb-timeline-1 py-5 py-xl-8">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <ul class="timeline">
+                        <li class="timeline-item">
+                            <div class="timeline-body">
+                                <p class="paragraph" id="section-one">1 - 5</p>
+                                <div class="row" id="section-cards-one">
+                                    <div class="col-12 col-md-6 col-xl-4 mb-3">
+                                        <div class="card">
+                                            <div class="body-card">
+                                                <div class="container-circle">
+                                                    <div class="circle"></div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4>En esta sección...</h4>
+                                                    <p>Encontrarás información sobre los personajes más
+                                                        populares de las
+                                                        películas.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-body">
+                                <p class="paragraph" id="section-two">6 - 11</p>
+                                <div class="row" id="section-cards-two">
+                                    <div class="col-12 col-md-6 col-xl-4 mb-3">
+                                        <div class="card">
+                                            <div class="body-card">
+                                                <div class="container-circle">
+                                                    <div class="circle2"></div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4>En esta sección...</h4>
+                                                    <p>Encontrarás información sobre personajes secundarios importantes.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-body">
+                                <p class="paragraph" id="section-three">12 - 17</p>
+                                <div class="row" id="section-cards-three">
+                                    <div class="col-12 col-md-6 col-xl-4 mb-3">
+                                        <div class="card">
+                                            <div class="body-card">
+                                                <div class="container-circle">
+                                                    <div class="circle3"></div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4>En esta sección...</h4>
+                                                    <p>Encontrarás otros personajes significativos.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        async function fetchCharacters(init, value, selector, clase) {
+            const characterPromises = [];
+
+            for (let i = init; i <= value; i++) {
+                characterPromises.push(fetch(`https://swapi.dev/api/people/${i}/`));
+            }
+
+            try {
+                const responses = await Promise.all(characterPromises);
+                const characters = await Promise.all(responses.map(res => res.json()));
+
+                const card = document.querySelector(`${selector}`);
+
+                characters.forEach((character, index) => {
+                    console.log(card)
+
+                    card.innerHTML +=
+                        `<div class="col-12 col-md-6 col-xl-4 mb-3">
+                            <div class="card">
+                                <div class="body-card">
+                                    <div class="container-circle">
+                                        <div class="${clase}"></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="w-75">${character.name}</h4>
+                                        <p>Altura: ${character.height} cm, Peso: ${character.mass} kg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                        ;
+                });
+                return characters
+            } catch (error) {
+                console.error('Error al obtener los personajes:', error);
+            }
+        }
+
+        document.querySelector('#section-one').addEventListener('click', async () => {
+            event.preventDefault()
+            await fetchCharacters(1, 5, '#section-cards-one', 'circle')
+        })
+
+        document.querySelector('#section-two').addEventListener('click', async () => {
+            event.preventDefault()
+            await fetchCharacters(6, 10, '#section-cards-two', 'circle2')
+        })
+
+        document.querySelector('#section-three').addEventListener('click', async () => {
+            event.preventDefault()
+            await fetchCharacters(11, 15, '#section-cards-three', 'circle3')
+        })
+
+    </script>
+
+</body>
+
+</html>

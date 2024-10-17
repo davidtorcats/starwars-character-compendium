@@ -1,0 +1,106 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin-inline: 100px;
+}
+
+
+.container-circle {
+    width: 30px;
+    height: 30px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    margin-top: 12px;
+    background: #f96b5b;
+    border-radius: 50%;
+    border: rgb(162, 27, 49) solid 2px;
+}
+
+
+.circle2 {
+    width: 30px;
+    height: 30px;
+    margin-top: 22px;
+    background: #7eeb7e;
+    border-radius: 50%;
+    border: solid 1px;
+
+}
+
+.circle3 {
+    width: 30px;
+    height: 30px;
+    margin-top: 22px;
+    background: #74c5f9;
+    border-radius: 50%;
+    border: solid 1px;
+}
+
+.body-card {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+}
+
+.paragraph {
+    width: 65px;
+    left: -90px;
+    top: -5px;
+    position: absolute;
+    text-align: right;
+    z-index: 2;
+    cursor: pointer;
+    font-weight: 700;
+    padding-inline: 5px;
+}
+
+.paragraph:hover {
+    box-shadow: 2px 2px 3px 0.5px rgb(134, 134, 134);
+    border-radius: 2px;
+    transition: .4s;
+}
+
+.paragraph:active {
+    box-shadow: 0px 0px 0px 0px rgb(134, 134, 134);
+    transition: .2s;
+}
+
+.bsb-timeline-1 .timeline>.timeline-item:before {
+    height: 10px;
+    width: 10px;
+    left: -5px;
+    background: #eeb900;
+}
+
+.bsb-timeline-1 .timeline:after {
+    background: #eeb900;
+}
+
+.card {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.bsb-timeline-1 .timeline>.timeline-item .timeline-body {
+    margin-left: 10px;
+}
+
+.body-card {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.container-card-body {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    opacity: 1;
+}
